@@ -5,8 +5,10 @@ import CoreConcept from "./components/CoreConcept";
 import TabButton from "./components/TabButton";
 
 function App() {
-  function handleSelect() {
-    console.log("Hello there --selected--");
+let tabContent = "Please click a button to see the content.";
+
+  function handleSelect(selectedButton) {
+    tabContent = selectedButton;
   }
 
   return (
@@ -30,11 +32,15 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={handleSelect}>Components</TabButton>
-            <TabButton onSelect={handleSelect}>JSX</TabButton>
-            <TabButton onSelect={handleSelect}>Props</TabButton>
-            <TabButton onSelect={handleSelect}>State</TabButton>
+            {/* {handleSelect("components")} - will call function immediately and display components, ()=> make sure it called upon pressing */}
+            <TabButton onSelect={() => handleSelect("components")}>
+              Components
+            </TabButton>
+            <TabButton onSelect={() => handleSelect("jsx")}>JSX</TabButton>
+            <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
+            <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
+          {tabContent}
         </section>
       </main>
     </div>
