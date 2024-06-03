@@ -5,7 +5,7 @@ import GameBoard from "./components/GameBoard";
 import Log from "./components/Log";
 
 function App() {
-  const [gameTurns, setGameTurns] = useState([]);
+  const [gameTurns, setGameTurns] = useState([]); //using to update two different parts of the UI
   const [activePlayer, setActivePlayer] = useState("X");
 
   function handleSelectSquare(rowIndex, colIndex) {
@@ -44,9 +44,12 @@ function App() {
             isActive={activePlayer === "O"}
           />
         </ol>
-        <GameBoard onSelectSquare={handleSelectSquare} turns={gameTurns} />
+        <GameBoard 
+         onSelectSquare={handleSelectSquare} 
+         turns={gameTurns} 
+        />
       </div>
-      <Log />
+      <Log turns={gameTurns} />
     </main>
   );
 }
