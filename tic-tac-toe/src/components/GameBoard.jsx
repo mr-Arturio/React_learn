@@ -1,4 +1,3 @@
-
 const initialGameBoard = [
   [null, null, null],
   [null, null, null],
@@ -6,8 +5,8 @@ const initialGameBoard = [
 ];
 
 export default function GameBoard({ onSelectSquare, turns }) {
-//derive the game board state from the initial game board and the turns array
-let gameBoard = initialGameBoard;
+  //derive the game board state from the initial game board and the turns array
+  let gameBoard = initialGameBoard;
 
   for (const turn of turns) {
     const { square, player } = turn; //destructuring the turn object to get the square and player properties(from App component)
@@ -37,7 +36,12 @@ let gameBoard = initialGameBoard;
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
                 {/* to receive and pass data on which row and column clicked */}
-                <button onClick={() => onSelectSquare(rowIndex, colIndex)}>{playerSymbol}</button>
+                <button
+                  onClick={() => onSelectSquare(rowIndex, colIndex)}
+                  disabled={playerSymbol != null}
+                >
+                  {playerSymbol}
+                </button>
               </li>
             ))}
           </ol>
