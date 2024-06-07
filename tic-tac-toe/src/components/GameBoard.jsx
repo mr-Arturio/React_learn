@@ -1,7 +1,7 @@
 export default function GameBoard({ onSelectSquare, turns }) {
   return (
     <ol id="game-board">
-      {gameBoard.map((row, rowIndex) => (
+      {turns.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerSymbol, colIndex) => (
