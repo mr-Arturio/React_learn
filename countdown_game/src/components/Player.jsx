@@ -1,25 +1,22 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function Player() {
-  const [name, setName] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const playerName = useRef(null);
 
-  function handleSetName(event) {
-    setSubmitted(false);
-    setName(event.target.value);
+  const [name, setName] = useState(null);
+
+  function handleClick() {
+    setName(playerName.current.value);
   }
-
-  function handleClick(){
-    setSubmitted(true);
-
-  }
-  
 
   return (
     <section id="player">
-      <h2>Welcome {submitted ? name : "unknown entity"}</h2>
+      <h2>Welcome {name ?? "unknown entity"}</h2> //works only if name in null not an empty string "_"
       <p>
-        <input type="text" onChange={handleSetName} value={name}/>
+        <input
+          ref={playerName}
+          type="text"
+        />
         <button onClick={handleClick}>Set Name</button>
       </p>
     </section>
